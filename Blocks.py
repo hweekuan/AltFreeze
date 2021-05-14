@@ -9,7 +9,14 @@ import torch.nn.functional as F
 import torch.nn as nn
 
 
-
+#class CNNBlock(nn.Module):
+#	def __init__(self,ch_list,kernel_list):
+#		.....
+#.      def test(self):
+# 
+		
+		
+#block1 = CNNBlock([48,96],[3,3])
 
 
 class CNNBlock1(nn.Module):
@@ -28,6 +35,7 @@ class CNNBlock1(nn.Module):
 		x = self.conv1(x)
 		x = self.batchnorm1(x)
 		x = F.relu(x)
+		#x>=0
 		x = self.conv2(x)
 		x = self.batchnorm2(x)
 		x = F.relu(F.max_pool2d(x,2))
@@ -95,20 +103,28 @@ class MLPBlock(nn.Module):
 		x = self.fc1(x)
 		x = self.dropout1(x)		
 		x = F.relu(x)
-		return x	
-mlpblock = MLPBlock()
+		return x
+	
+	
+	
+# repeat -- mlpblock = MLPBlock()
 
 
-cnnblock1 = CNNBlock1()
-cnnblock2 = CNNBlock2()
-cnnblock3 = CNNBlock3()
-mlpblock = MLPBlock()
+#cnnblock1 = CNNBlock1()
+#cnnblock2 = CNNBlock2()
+#cnnblock3 = CNNBlock3()
+#mlpblock = MLPBlock()
 
 #Combine these blocks
 
 class EnsembleModel(nn.Module):
 	def __init__(self):
 		super(EnsembleModel, self).__init__()
+		#mlpblock = MLPBlock()
+#cnnblock1 = CNNBlock1()
+#cnnblock2 = CNNBlock2()
+#cnnblock3 = CNNBlock3()
+#mlpblock = MLPBlock()
 		self.cnnblock1 = cnnblock1
 		self.cnnblock2 = cnnblock2
 		self.cnnblock3 = cnnblock3
